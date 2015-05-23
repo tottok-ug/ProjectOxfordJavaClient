@@ -47,13 +47,13 @@ public class OxfordComputerVisionClient extends OxfordRestClient implements Oxfo
 		return ocrResponse;
 	}
 
-	public OxfordResponse request(OxfordRequest request) {
-		String path = endpoint + request.getpath();
-		String uri = OxfordRequest.getUrl(path, request.getPathParameters());
-		Map<String, Object> params = request.getPostParamters();
-
-		return null;
-	}
+	// public OxfordResponse request(OxfordRequest request) {
+	// String path = endpoint + request.getpath();
+	// String uri = OxfordRequest.getUrl(path, request.getPathParameters());
+	// Map<String, Object> params = request.getPostParamters();
+	//
+	// return null;
+	// }
 
 	@Override
 	public AnalyzeResponse analyzeImage(String url, String[] visualFeatures) throws ComputerVisionException {
@@ -78,6 +78,12 @@ public class OxfordComputerVisionClient extends OxfordRestClient implements Oxfo
 	@Override
 	public byte[] getThumbnail(int width, int height, boolean smartCropping, InputStream stream)
 			throws ComputerVisionException, IOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public OxfordResponse request(OxfordRequest request) {
 		// TODO Auto-generated method stub
 		return null;
 	}

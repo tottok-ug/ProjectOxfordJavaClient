@@ -65,6 +65,12 @@ public abstract class OxfordRestClient implements OxfordClient {
 	private String subscriptionKey;
 	private Gson gson = new Gson();
 
+	@Override
+	public OxfordResponse request(OxfordRequest request) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	public Object request(String url, String method, Map<String, Object> data, String contentType,
 			boolean responseInputStream) throws ComputerVisionException {
 		if (method.matches("GET")) {
