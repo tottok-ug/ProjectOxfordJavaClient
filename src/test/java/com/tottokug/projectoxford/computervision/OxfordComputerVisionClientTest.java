@@ -5,13 +5,12 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.tottokug.projectoxford.ResponseCode;
 import com.tottokug.projectoxford.auth.BasicOxfordCredentilas;
-import com.tottokug.projectoxford.client.computervision.ocr.BoundingBox;
-import com.tottokug.projectoxford.client.computervision.ocr.Region;
 import com.tottokug.projectoxford.computervision.ocr.OCRRequest;
 import com.tottokug.projectoxford.computervision.ocr.OCRResponse;
+import com.tottokug.projectoxford.computervision.ocr.contract.BoundingBox;
 import com.tottokug.projectoxford.computervision.ocr.contract.Language;
+import com.tottokug.projectoxford.computervision.ocr.contract.Region;
 import com.tottokug.projectoxford.computervision.ocr.contract.Word;
 
 public class OxfordComputerVisionClientTest {
@@ -26,7 +25,7 @@ public class OxfordComputerVisionClientTest {
 		OCRRequest request = new OCRRequest();
 		request.withDetectOrientation(true).withLanguage(Language.JAPANESE).withInputStream(stream);
 		OCRResponse response = visionClient.recognizeText(request);
-		if (response.getStatus() == ResponseCode.OK) {
+		if (response.getStatus() == 200) {
 			Language language = response.getLanguage();
 			int textAngle = response.getTextAngle();
 			String orientation = response.getOrientation();

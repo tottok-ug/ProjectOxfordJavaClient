@@ -2,7 +2,6 @@ package com.tottokug.projectoxford.computervision.ocr;
 
 import static org.junit.Assert.assertThat;
 
-import org.apache.commons.codec.language.bm.Lang;
 import org.hamcrest.core.Is;
 import org.junit.Test;
 

@@ -9,16 +9,14 @@ Project Oxford Java Client
 ## How To Use
 ```Java
 
-
-   public static void main(){
-        OxfordComputerVisionClient visionClient = new OxfordComputerVisionClient(new BasicOxfordCredentilas(
+OxfordComputerVisionClient visionClient = new OxfordComputerVisionClient(new BasicOxfordCredentilas(
 				"**********"));
 		InputStream stream = getClass().getResourceAsStream("test.png");
 
 		OCRRequest request = new OCRRequest();
 		request.withDetectOrientation(true).withLanguage(Language.JAPANESE).withInputStream(stream);
 		OCRResponse response = visionClient.recognizeText(request);
-		if (response.getStatus() == ResponseCode.OK) {
+		if (response.getStatus() == 200) {
 			Language language = response.getLanguage();
 			int textAngle = response.getTextAngle();
 			String orientation = response.getOrientation();
@@ -41,6 +39,5 @@ Project Oxford Java Client
 				}
 			}
 		}
-    }
 		
 ```

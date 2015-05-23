@@ -8,13 +8,13 @@ import com.tottokug.projectoxford.computervision.ocr.contract.Region;
 
 public class OCRResponse {
 
-    public OCRResponse(OxfordResponse oxResponse) {
+	public OCRResponse(OxfordResponse oxResponse) {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Object getStatus() {
+	public int getStatus() {
 		// TODO Auto-generated method stub
-		return null;
+		return 0;
 	}
 
 	public Language getLanguage() {
