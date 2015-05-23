@@ -1,6 +1,6 @@
 package com.tottokug.projectoxford.computervision.analyze;
 
-import com.tottokug.projectoxford.computervision.OxfordResponse;
+import com.tottokug.projectoxford.OxfordResponse;
 
 public class AnalyzeResponse implements OxfordResponse {
 

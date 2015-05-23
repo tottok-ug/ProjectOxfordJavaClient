@@ -2,8 +2,6 @@ package com.tottokug.projectoxford.computervision.ocr.contract;
 
 import java.util.List;
 
-import com.tottokug.projectoxford.computervision.Line;
-
 
 public class Region {
 

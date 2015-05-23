@@ -1,4 +1,4 @@
-package com.tottokug.projectoxford.computervision;
+package com.tottokug.projectoxford;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -66,26 +66,23 @@ public abstract class OxfordRestClient implements OxfordClient {
 	private Gson gson = new Gson();
 
 	@Override
-	public OxfordResponse request(OxfordRequest request) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public OxfordResponse request(OxfordRequest request) throws ComputerVisionException {
+		switch (request.getMethod()) {
+			case DELETE:
+				break;
+			case GET:
+				break;
+			case POST:
+				break;
+			case PUT:
+				break;
+			case PATCH:
+				break;
+			default:
+				throw new ComputerVisionException("Error! Incorrect method provided: " + request.getMethod().toString());
 
-	public Object request(String url, String method, Map<String, Object> data, String contentType,
-			boolean responseInputStream) throws ComputerVisionException {
-		if (method.matches("GET")) {
-			return get(url);
-		} else if (method.matches("POST")) {
-			return post(url, data, contentType, responseInputStream);
-		} else if (method.matches("PUT")) {
-			return put(url, data);
-		} else if (method.matches("DELETE")) {
-			return delete(url);
-		} else if (method.matches("PATCH")) {
-			return patch(url, data, contentType, false);
 		}
-
-		throw new ComputerVisionException("Error! Incorrect method provided: " + method);
+		return null;
 	}
 
 	private Object get(String url) throws ComputerVisionException {
@@ -236,7 +233,6 @@ public abstract class OxfordRestClient implements OxfordClient {
 		while ((line = br.readLine()) != null) {
 			json.append(line);
 		}
-
 		return json.toString();
 	}
 

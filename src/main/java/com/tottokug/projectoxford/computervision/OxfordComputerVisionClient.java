@@ -3,6 +3,8 @@ package com.tottokug.projectoxford.computervision;
 import java.io.IOException;
 import java.io.InputStream;
 
+import com.tottokug.projectoxford.OxfordResponse;
+import com.tottokug.projectoxford.OxfordRestClient;
 import com.tottokug.projectoxford.auth.OxfordCredentials;
 import com.tottokug.projectoxford.computervision.analyze.AnalyzeResponse;
 import com.tottokug.projectoxford.computervision.exception.ComputerVisionException;

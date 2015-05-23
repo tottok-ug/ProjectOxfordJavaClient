@@ -10,6 +10,7 @@ import com.tottokug.projectoxford.computervision.ocr.OCRRequest;
 import com.tottokug.projectoxford.computervision.ocr.OCRResponse;
 import com.tottokug.projectoxford.computervision.ocr.contract.BoundingBox;
 import com.tottokug.projectoxford.computervision.ocr.contract.Language;
+import com.tottokug.projectoxford.computervision.ocr.contract.Line;
 import com.tottokug.projectoxford.computervision.ocr.contract.Region;
 import com.tottokug.projectoxford.computervision.ocr.contract.Word;
 
@@ -19,8 +20,8 @@ public class OxfordComputerVisionClientTest {
 	public void test() {
 
 		OxfordComputerVisionClient visionClient = new OxfordComputerVisionClient(new BasicOxfordCredentilas(
-				"**********"));
-		InputStream stream = getClass().getResourceAsStream("test.png");
+				Messages.getString("OxfordComputerVisionClientTest.subscriptKey"))); //$NON-NLS-1$
+		InputStream stream = getClass().getResourceAsStream("test.png"); //$NON-NLS-1$
 
 		OCRRequest request = new OCRRequest();
 		request.withDetectOrientation(true).withLanguage(Language.JAPANESE).withInputStream(stream);

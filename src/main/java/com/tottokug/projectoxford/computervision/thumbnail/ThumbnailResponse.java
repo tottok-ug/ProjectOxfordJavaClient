@@ -1,6 +1,6 @@
 package com.tottokug.projectoxford.computervision.thumbnail;
 
-import com.tottokug.projectoxford.computervision.OxfordResponse;
+import com.tottokug.projectoxford.OxfordResponse;
 
 public class ThumbnailResponse implements OxfordResponse {
 

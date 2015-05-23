@@ -2,7 +2,7 @@ package com.tottokug.projectoxford.computervision.thumbnail;
 
 import java.util.Map;
 
-import com.tottokug.projectoxford.computervision.OxfordRequest;
+import com.tottokug.projectoxford.OxfordRequest;
 
 public class ThumbnailRequest implements OxfordRequest {
 

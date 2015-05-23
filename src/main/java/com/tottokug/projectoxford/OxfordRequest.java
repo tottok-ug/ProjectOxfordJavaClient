@@ -1,6 +1,7 @@
-package com.tottokug.projectoxford.computervision;
+package com.tottokug.projectoxford;
 
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Method;
 import java.net.URLEncoder;
 import java.util.Map;
 
@@ -33,5 +34,7 @@ public interface OxfordRequest {
 
 		return url.toString();
 	}
+
+	HttpRequestMethod getMethod();
 
 }

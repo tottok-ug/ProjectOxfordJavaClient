@@ -2,7 +2,7 @@ package com.tottokug.projectoxford.computervision.ocr;
 
 import java.util.List;
 
-import com.tottokug.projectoxford.computervision.OxfordResponse;
+import com.tottokug.projectoxford.OxfordResponse;
 import com.tottokug.projectoxford.computervision.ocr.contract.Language;
 import com.tottokug.projectoxford.computervision.ocr.contract.Region;
 

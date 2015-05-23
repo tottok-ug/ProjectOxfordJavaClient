@@ -1,8 +1,6 @@
-package com.tottokug.projectoxford.computervision;
+package com.tottokug.projectoxford.computervision.ocr.contract;
 
 import java.util.List;
-
-import com.tottokug.projectoxford.computervision.ocr.contract.Word;
 
 
 public class Line {

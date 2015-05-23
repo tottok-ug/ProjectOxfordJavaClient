@@ -3,7 +3,7 @@ package com.tottokug.projectoxford.computervision.ocr;
 import java.io.InputStream;
 import java.util.Map;
 
-import com.tottokug.projectoxford.computervision.OxfordRequest;
+import com.tottokug.projectoxford.OxfordRequest;
 import com.tottokug.projectoxford.computervision.ocr.contract.Language;
 
 public class OCRRequest implements OxfordRequest {
