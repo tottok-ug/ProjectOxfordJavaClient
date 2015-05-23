@@ -1,4 +1,4 @@
-package com.tottokug.projectoxford.client.computervision.ocr;
+package com.tottokug.projectoxford.computervision.ocr;
 
 public enum Language {
 

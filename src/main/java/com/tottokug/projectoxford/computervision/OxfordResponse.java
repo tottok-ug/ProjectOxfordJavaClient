@@ -1,4 +1,4 @@
-package com.tottokug.projectoxford.client;
+package com.tottokug.projectoxford.computervision;
 
 public interface OxfordResponse {
     

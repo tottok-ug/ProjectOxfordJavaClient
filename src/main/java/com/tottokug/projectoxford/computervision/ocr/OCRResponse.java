@@ -1,6 +1,6 @@
-package com.tottokug.projectoxford.client.computervision.ocr;
+package com.tottokug.projectoxford.computervision.ocr;
 
-import com.tottokug.projectoxford.client.OxfordResponse;
+import com.tottokug.projectoxford.computervision.OxfordResponse;
 
 public class OCRResponse {
 

@@ -1,4 +1,4 @@
-package com.tottokug.projectoxford.client;
+package com.tottokug.projectoxford.computervision;
 
 import java.util.Map;
 

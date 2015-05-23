@@ -1,10 +1,7 @@
-package com.tottokug.projectoxford.client.computervision;
+package com.tottokug.projectoxford.computervision;
 
 import java.util.Map;
 
-import com.tottokug.projectoxford.client.OxfordClientAbstract;
-import com.tottokug.projectoxford.client.OxfordRequest;
-import com.tottokug.projectoxford.client.OxfordResponse;
 import com.tottokug.projectoxford.client.computervision.ocr.OCRRequest;
 import com.tottokug.projectoxford.client.computervision.ocr.OCRResponse;
 import com.tottokug.projectoxford.client.computervision.thumbnail.ThumbnailRequest;
