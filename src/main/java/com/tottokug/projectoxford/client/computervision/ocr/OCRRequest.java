@@ -1,4 +1,4 @@
-package com.tottokug.projectoxford.client.ocr;
+package com.tottokug.projectoxford.client.computervision.ocr;
 
 import com.tottokug.projectoxford.client.OxfordRequest;
 

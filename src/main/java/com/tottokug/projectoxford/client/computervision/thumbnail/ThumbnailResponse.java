@@ -1,4 +1,4 @@
-package com.tottokug.projectoxford.client.thumbnail;
+package com.tottokug.projectoxford.client.computervision.thumbnail;
 
 import com.tottokug.projectoxford.client.OxfordResponse;
 
