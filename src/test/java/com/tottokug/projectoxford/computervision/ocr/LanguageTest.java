@@ -1,4 +1,4 @@
-package com.tottokug.projectoxford.client.computervision.ocr;
+package com.tottokug.projectoxford.computervision.ocr;
 
 import static org.junit.Assert.assertThat;
 
@@ -6,7 +6,7 @@ import org.apache.commons.codec.language.bm.Lang;
 import org.hamcrest.core.Is;
 import org.junit.Test;
 
-import com.tottokug.projectoxford.computervision.ocr.Language;
+import com.tottokug.projectoxford.computervision.ocr.contract.Language;
 
 public class LanguageTest {
 

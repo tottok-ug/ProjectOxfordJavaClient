@@ -5,8 +5,8 @@ import java.io.InputStream;
 
 import com.tottokug.projectoxford.computervision.analyze.AnalyzeResponse;
 import com.tottokug.projectoxford.computervision.exception.ComputerVisionException;
-import com.tottokug.projectoxford.computervision.ocr.Language;
 import com.tottokug.projectoxford.computervision.ocr.OCRResponse;
+import com.tottokug.projectoxford.computervision.ocr.contract.Language;
 
 public interface OxfordComputerVision {
 

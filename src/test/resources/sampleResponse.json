@@ -1,0 +1,164 @@
+{
+  "language": "en",
+  "textAngle": 0,
+  "orientation": "Up",
+  "regions": [
+    {
+      "boundingBox": "81,63,1340,1055",
+      "lines": [
+        {
+          "boundingBox": "321,63,855,117",
+          "words": [
+            {
+              "boundingBox": "321,63,174,94",
+              "text": "Set"
+            },
+            {
+              "boundingBox": "529,87,126,69",
+              "text": "an"
+            },
+            {
+              "boundingBox": "693,65,483,115",
+              "text": "example."
+            }
+          ]
+        },
+        {
+          "boundingBox": "218,182,1059,116",
+          "words": [
+            {
+              "boundingBox": "218,182,271,92",
+              "text": "Treat"
+            },
+            {
+              "boundingBox": "521,203,504,95",
+              "text": "everyOne"
+            },
+            {
+              "boundingBox": "1054,182,223,91",
+              "text": "With"
+            }
+          ]
+        },
+        {
+          "boundingBox": "156,299,1187,116",
+          "words": [
+            {
+              "boundingBox": "156,299,489,92",
+              "text": "kindness"
+            },
+            {
+              "boundingBox": "680,299,197,92",
+              "text": "and"
+            },
+            {
+              "boundingBox": "919,305,424,110",
+              "text": "respect,"
+            }
+          ]
+        },
+        {
+          "boundingBox": "81,417,1340,91",
+          "words": [
+            {
+              "boundingBox": "81,438,255,70",
+              "text": "even"
+            },
+            {
+              "boundingBox": "372,417,307,91",
+              "text": "those"
+            },
+            {
+              "boundingBox": "708,417,229,91",
+              "text": "who"
+            },
+            {
+              "boundingBox": "972,438,171,70",
+              "text": "are"
+            },
+            {
+              "boundingBox": "1178,417,243,91",
+              "text": "rude"
+            }
+          ]
+        },
+        {
+          "boundingBox": "182,534,1137,116",
+          "words": [
+            {
+              "boundingBox": "182,539,105,86",
+              "text": "to"
+            },
+            {
+              "boundingBox": "320,555,198,95",
+              "text": "you"
+            },
+            {
+              "boundingBox": "553,582,69,14",
+              "text": "—"
+            },
+            {
+              "boundingBox": "656,539,170,86",
+              "text": "not"
+            },
+            {
+              "boundingBox": "863,534,456,92",
+              "text": "because"
+            }
+          ]
+        },
+        {
+          "boundingBox": "282,651,934,116",
+          "words": [
+            {
+              "boundingBox": "282,652,236,115",
+              "text": "they"
+            },
+            {
+              "boundingBox": "550,673,171,70",
+              "text": "are"
+            },
+            {
+              "boundingBox": "756,651,247,111",
+              "text": "nice,"
+            },
+            {
+              "boundingBox": "1045,651,171,91",
+              "text": "but"
+            }
+          ]
+        },
+        {
+          "boundingBox": "292,769,916,116",
+          "words": [
+            {
+              "boundingBox": "292,769,455,91",
+              "text": "because"
+            },
+            {
+              "boundingBox": "777,790,198,95",
+              "text": "you"
+            },
+            {
+              "boundingBox": "1014,790,194,70",
+              "text": "are."
+            }
+          ]
+        },
+        {
+          "boundingBox": "487,1002,526,116",
+          "words": [
+            {
+              "boundingBox": "487,1002,236,116",
+              "text": "Spiril"
+            },
+            {
+              "boundingBox": "741,1014,272,67",
+              "text": "Science"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
