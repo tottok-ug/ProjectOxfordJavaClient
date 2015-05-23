@@ -2,7 +2,6 @@ package com.tottokug.projectoxford.computervision;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Map;
 
 import com.tottokug.projectoxford.auth.OxfordCredentials;
 import com.tottokug.projectoxford.computervision.analyze.AnalyzeResponse;
@@ -82,9 +81,4 @@ public class OxfordComputerVisionClient extends OxfordRestClient implements Oxfo
 		return null;
 	}
 
-	@Override
-	public OxfordResponse request(OxfordRequest request) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
