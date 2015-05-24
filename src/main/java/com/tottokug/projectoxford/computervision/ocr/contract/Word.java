@@ -2,20 +2,23 @@ package com.tottokug.projectoxford.computervision.ocr.contract;
 
 public class Word {
 
-	String text;
-	BoundingBox bb;
+	private String boundingBox; // e.g. "boundingBox":"66, 66, 33, 18",
 
-	public Word(String text, BoundingBox bb) {
-		this.text = text;
-		this.bb = bb;
+	private String text;
+
+	public String getBoundingBox() {
+		return boundingBox;
 	}
 
-	public BoundingBox getBoundingBox() {
-		return bb;
+	public void setBoundingBox(String boundingBox) {
+		this.boundingBox = boundingBox;
 	}
 
 	public String getText() {
 		return text;
 	}
 
+	public void setText(String text) {
+		this.text = text;
+	}
 }

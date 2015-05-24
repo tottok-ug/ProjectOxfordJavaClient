@@ -3,8 +3,6 @@ package com.tottokug.projectoxford.computervision;
 import java.io.InputStream;
 import java.util.List;
 
-import org.hamcrest.core.Is;
-import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,19 +44,12 @@ public class OxfordComputerVisionClientTest {
 				logger.debug("orientation = " + orientation);
 				List<Region> regions = response.getRegions();
 				for (Region region : regions) {
-					BoundingBox boundingBox = region.getBoundingBox();
-					logger.debug("region.bb.minX = " + boundingBox.getMinX());
-					logger.debug("region.bb.minY = " + boundingBox.getMinY());
-					logger.debug("region.bb.width= " + boundingBox.getWidth());
-					logger.debug("region.bb.height = " + boundingBox.getHeight());
-
 					List<Line> lines = region.getLines();
 					for (Line line : lines) {
-						line.getBoundingBox();
 						List<Word> words = line.getWords();
 						for (Word word : words) {
-							BoundingBox b = word.getBoundingBox();
 							String text = word.getText();
+							logger.debug("text => " + text);
 						}
 					}
 				}
