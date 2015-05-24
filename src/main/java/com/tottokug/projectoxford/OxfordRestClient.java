@@ -8,6 +8,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Map;
 
+import org.apache.http.Header;
 import org.apache.http.HttpRequestInterceptor;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpDelete;
@@ -20,6 +21,9 @@ import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.util.EntityUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
 import com.tottokug.projectoxford.auth.BasicOxfordCredentilas;
@@ -27,6 +31,8 @@ import com.tottokug.projectoxford.auth.OxfordCredentials;
 import com.tottokug.projectoxford.computervision.exception.ComputerVisionException;
 
 public abstract class OxfordRestClient implements OxfordClient {
+
+	Logger logger = LoggerFactory.getLogger(OxfordRestClient.class);
 
 	protected String endpoint;
 
@@ -67,22 +73,35 @@ public abstract class OxfordRestClient implements OxfordClient {
 
 	@Override
 	public OxfordResponse request(OxfordRequest request) throws ComputerVisionException {
+		logger.debug("Starting API request");
+		logger.debug("request.path = " + request.getpath());
+		String url = endpoint + request.getpath();
+		logger.debug("url = " + url);
+		OxfordResponse response = new DefaultOxfordResponse();
 		switch (request.getMethod()) {
 			case DELETE:
 				break;
 			case GET:
+				get(url);
 				break;
 			case POST:
+				post(url, request.getPostParamters(), request.getContentType(), response.inputStream());
 				break;
 			case PUT:
 				break;
 			case PATCH:
+				patch(url, request.getPostParamters(), request.getContentType(), response.inputStream());
 				break;
 			default:
 				throw new ComputerVisionException("Error! Incorrect method provided: " + request.getMethod().toString());
 
 		}
 		return null;
+	}
+
+	private Object post(String url, Map<String, Object> data, String contentType, boolean responseInputStream)
+			throws ComputerVisionException {
+		return webInvoke("POST", url, data, contentType, responseInputStream);
 	}
 
 	private Object get(String url) throws ComputerVisionException {
@@ -100,11 +119,6 @@ public abstract class OxfordRestClient implements OxfordClient {
 		} catch (Exception e) {
 			throw new ComputerVisionException(e.getMessage());
 		}
-	}
-
-	private Object post(String url, Map<String, Object> data, String contentType, boolean responseInputStream)
-			throws ComputerVisionException {
-		return webInvoke("POST", url, data, contentType, responseInputStream);
 	}
 
 	private Object patch(String url, Map<String, Object> data, String contentType, boolean responseInputStream)
@@ -134,7 +148,11 @@ public abstract class OxfordRestClient implements OxfordClient {
 			request.setHeader("Content-Type", "application/json");
 		}
 
-		request.setHeader(headerKey, this.subscriptionKey);
+		request.setHeader(headerKey, this.credentials.getSubscriptionKey());
+
+		for (Header header : request.getAllHeaders()) {
+			logger.debug(header.getName() + " = " + header.getValue());
+		}
 
 		try (CloseableHttpClient client = getHttpClient()) {
 			if (!isStream) {
@@ -144,7 +162,6 @@ public abstract class OxfordRestClient implements OxfordClient {
 			} else {
 				request.setEntity(new ByteArrayEntity((byte[]) data.get("data")));
 			}
-
 			HttpResponse response = client.execute(request);
 			int statusCode = response.getStatusLine().getStatusCode();
 			if (statusCode == 200) {
@@ -155,14 +172,15 @@ public abstract class OxfordRestClient implements OxfordClient {
 				}
 			} else {
 				throw new Exception("Error executing POST request! Received error code: "
-						+ response.getStatusLine().getStatusCode());
+						+ response.getStatusLine().getStatusCode() + "[" + EntityUtils.toString(response.getEntity())
+						+ "]");
 			}
 		} catch (Exception e) {
 			throw new ComputerVisionException(e.getMessage());
 		}
 	}
 
-	private Object put(String url, Map<String, Object> data) throws ComputerVisionException {
+	private String put(String url, Map<String, Object> data) throws ComputerVisionException {
 		HttpPut request = new HttpPut(url);
 		request.setHeader(headerKey, this.subscriptionKey);
 
@@ -233,6 +251,7 @@ public abstract class OxfordRestClient implements OxfordClient {
 		while ((line = br.readLine()) != null) {
 			json.append(line);
 		}
+		logger.debug(json.toString());
 		return json.toString();
 	}
 

@@ -28,4 +28,10 @@ public class AnalyzeResponse implements OxfordResponse {
 		return null;
 	}
 
+	@Override
+	public boolean inputStream() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

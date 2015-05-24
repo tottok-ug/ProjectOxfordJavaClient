@@ -2,11 +2,12 @@ package com.tottokug.projectoxford.computervision.ocr;
 
 import java.util.List;
 
+import com.tottokug.projectoxford.OxFordResponseAbstract;
 import com.tottokug.projectoxford.OxfordResponse;
 import com.tottokug.projectoxford.computervision.ocr.contract.Language;
 import com.tottokug.projectoxford.computervision.ocr.contract.Region;
 
-public class OCRResponse {
+public class OCRResponse extends OxFordResponseAbstract {
 
 	public OCRResponse(OxfordResponse oxResponse) {
 		// TODO Auto-generated constructor stub
@@ -35,6 +36,11 @@ public class OCRResponse {
 	public List<Region> getRegions() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public boolean inputStream() {
+		return false;
 	}
 
 }

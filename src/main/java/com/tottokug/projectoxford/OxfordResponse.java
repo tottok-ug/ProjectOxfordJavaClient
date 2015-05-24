@@ -1,6 +1,5 @@
 package com.tottokug.projectoxford;
 
-
 public interface OxfordResponse {
 
 	int getResponseStatus();
@@ -10,5 +9,7 @@ public interface OxfordResponse {
 	byte[] getResponseBody();
 
 	String getContentType();
+
+	boolean inputStream();
 
 }

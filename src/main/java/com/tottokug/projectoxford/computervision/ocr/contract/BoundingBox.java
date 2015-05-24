@@ -2,6 +2,13 @@ package com.tottokug.projectoxford.computervision.ocr.contract;
 
 public class BoundingBox {
 
+	public BoundingBox(double minX, double minY, double width, double height) {
+		this.minX = minX;
+		this.minY = minY;
+		this.width = width;
+		this.height = height;
+	}
+
 	double minX, minY, width, height;
 
 	public double getMinX() {
@@ -15,13 +22,11 @@ public class BoundingBox {
 	}
 
 	public double getMinY() {
-		// TODO Auto-generated method stub
 		return width;
 
 	}
 
 	public double getHeight() {
-		// TODO Auto-generated method stub
 		return height;
 
 	}

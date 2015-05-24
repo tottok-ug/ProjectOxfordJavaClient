@@ -5,13 +5,16 @@ public class Word {
 	String text;
 	BoundingBox bb;
 
+	public Word(String text, BoundingBox bb) {
+		this.text = text;
+		this.bb = bb;
+	}
+
 	public BoundingBox getBoundingBox() {
-		// TODO Auto-generated method stub
 		return bb;
 	}
 
 	public String getText() {
-		// TODO Auto-generated method stub
 		return text;
 	}
 
