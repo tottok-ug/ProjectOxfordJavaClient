@@ -1,5 +1,7 @@
 package com.tottokug.projectoxford.computervision.analyze;
 
+import org.apache.http.HttpResponse;
+
 import com.tottokug.projectoxford.OxfordResponse;
 
 public class AnalyzeResponse implements OxfordResponse {
@@ -32,6 +34,12 @@ public class AnalyzeResponse implements OxfordResponse {
 	public boolean inputStream() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public <T extends OxfordResponse> T build(HttpResponse response) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

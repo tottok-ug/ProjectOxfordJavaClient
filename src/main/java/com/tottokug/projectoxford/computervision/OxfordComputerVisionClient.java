@@ -49,8 +49,7 @@ public class OxfordComputerVisionClient extends OxfordRestClient implements Oxfo
 	}
 
 	public OCRResponse recognizeText(OCRRequest request) throws ComputerVisionException {
-		OxfordResponse oxResponse = this.request(request);
-		OCRResponse ocrResponse = new OCRResponse(oxResponse);
+		OCRResponse ocrResponse = this.request(request, new OCRResponse());
 		return ocrResponse;
 	}
 

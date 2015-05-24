@@ -1,5 +1,7 @@
 package com.tottokug.projectoxford;
 
+import org.apache.http.HttpResponse;
+
 public interface OxfordResponse {
 
 	int getResponseStatus();
@@ -11,5 +13,7 @@ public interface OxfordResponse {
 	String getContentType();
 
 	boolean inputStream();
+
+	<T extends OxfordResponse> T build(HttpResponse response);
 
 }

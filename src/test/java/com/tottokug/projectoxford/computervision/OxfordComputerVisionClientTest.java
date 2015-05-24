@@ -3,6 +3,8 @@ package com.tottokug.projectoxford.computervision;
 import java.io.InputStream;
 import java.util.List;
 
+import org.hamcrest.core.Is;
+import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,17 +35,22 @@ public class OxfordComputerVisionClientTest {
 		OCRResponse response;
 		try {
 			response = visionClient.recognizeText(request);
+			logger.debug("RESPONSED -===================================================");
+			logger.debug("RESPONSE CODE = " + response.getStatus());
 			if (response.getStatus() == 200) {
 				Language language = response.getLanguage();
-				int textAngle = response.getTextAngle();
+				logger.debug("LANGUAGE = " + language.toString());
+				double textAngle = response.getTextAngle();
+				logger.debug("textAngle = " + textAngle);
 				String orientation = response.getOrientation();
+				logger.debug("orientation = " + orientation);
 				List<Region> regions = response.getRegions();
 				for (Region region : regions) {
 					BoundingBox boundingBox = region.getBoundingBox();
-					boundingBox.getMinX();
-					boundingBox.getMinX();
-					boundingBox.getWidth();
-					boundingBox.getHeight();
+					logger.debug("region.bb.minX = " + boundingBox.getMinX());
+					logger.debug("region.bb.minY = " + boundingBox.getMinY());
+					logger.debug("region.bb.width= " + boundingBox.getWidth());
+					logger.debug("region.bb.height = " + boundingBox.getHeight());
 
 					List<Line> lines = region.getLines();
 					for (Line line : lines) {

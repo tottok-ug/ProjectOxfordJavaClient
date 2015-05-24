@@ -1,9 +1,5 @@
 package com.tottokug.projectoxford;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Map;
@@ -72,64 +68,58 @@ public abstract class OxfordRestClient implements OxfordClient {
 	private Gson gson = new Gson();
 
 	@Override
-	public OxfordResponse request(OxfordRequest request) throws ComputerVisionException {
+	public <T extends OxfordResponse> T request(OxfordRequest request, T response) throws ComputerVisionException {
 		logger.debug("Starting API request");
 		logger.debug("request.path = " + request.getpath());
+		logger.debug("request.method = " + request.getMethod().toString());
 		String url = endpoint + request.getpath();
 		logger.debug("url = " + url);
-		OxfordResponse response = new DefaultOxfordResponse();
 		switch (request.getMethod()) {
 			case DELETE:
-				return delete(url);
-				break;
+				return delete(url, response);
 			case GET:
-				return get(url);
-				break;
+				return get(url, response);
 			case POST:
-				return post(url, request.getPostParamters(), request.getContentType(), response.inputStream());
-				break;
+				return post(url, request.getPostParamters(), request.getContentType(), response);
 			case PUT:
-				return put(url, request.getPostParamters());
-				break;
+				return put(url, request.getPostParamters(), response);
 			case PATCH:
-				return patch(url, request.getPostParamters(), request.getContentType(), response.inputStream());
-				break;
+				return patch(url, request.getPostParamters(), request.getContentType(), response);
 			default:
 				throw new ComputerVisionException("Error! Incorrect method provided: " + request.getMethod().toString());
 
 		}
-		return null;
 	}
 
-	private Object post(String url, Map<String, Object> data, String contentType, boolean responseInputStream)
+	private <T extends OxfordResponse> T post(String url, Map<String, Object> data, String contentType, T response)
 			throws ComputerVisionException {
-		return webInvoke("POST", url, data, contentType, responseInputStream);
+		return webInvoke("POST", url, data, contentType, response);
 	}
 
-	private Object get(String url) throws ComputerVisionException {
+	private <T extends OxfordResponse> T get(String url, T response) throws ComputerVisionException {
 		HttpGet request = new HttpGet(url);
 		request.setHeader(headerKey, this.subscriptionKey);
 		try (CloseableHttpClient client = getHttpClient()) {
-			HttpResponse response = client.execute(request);
-			int statusCode = response.getStatusLine().getStatusCode();
+			HttpResponse httpResponse = client.execute(request);
+			int statusCode = httpResponse.getStatusLine().getStatusCode();
 			if (statusCode == 200) {
-				return readInput(response.getEntity().getContent());
+				return response.build(httpResponse);
 			} else {
 				throw new Exception("Error executing GET request! Received error code: "
-						+ response.getStatusLine().getStatusCode());
+						+ httpResponse.getStatusLine().getStatusCode());
 			}
 		} catch (Exception e) {
 			throw new ComputerVisionException(e.getMessage());
 		}
 	}
 
-	private Object patch(String url, Map<String, Object> data, String contentType, boolean responseInputStream)
+	private <T extends OxfordResponse> T patch(String url, Map<String, Object> data, String contentType, T response)
 			throws ComputerVisionException {
-		return webInvoke("PATCH", url, data, contentType, responseInputStream);
+		return webInvoke("PATCH", url, data, contentType, response);
 	}
 
-	private Object webInvoke(String method, String url, Map<String, Object> data, String contentType,
-			boolean responseInputStream) throws ComputerVisionException {
+	private <T extends OxfordResponse> T webInvoke(String method, String url, Map<String, Object> data,
+			String contentType, T response) throws ComputerVisionException {
 		HttpEntityEnclosingRequestBase request = null;
 
 		if (method.matches("POST")) {
@@ -164,25 +154,23 @@ public abstract class OxfordRestClient implements OxfordClient {
 			} else {
 				request.setEntity(new ByteArrayEntity((byte[]) data.get("data")));
 			}
-			HttpResponse response = client.execute(request);
-			int statusCode = response.getStatusLine().getStatusCode();
+			HttpResponse httpResponse = client.execute(request);
+			int statusCode = httpResponse.getStatusLine().getStatusCode();
 			if (statusCode == 200) {
-				if (!responseInputStream) {
-					return readInput(response.getEntity().getContent());
-				} else {
-					return response.getEntity().getContent();
-				}
+				return response.build(httpResponse);
 			} else {
 				throw new Exception("Error executing POST request! Received error code: "
-						+ response.getStatusLine().getStatusCode() + "[" + EntityUtils.toString(response.getEntity())
-						+ "]");
+						+ httpResponse.getStatusLine().getStatusCode() + "["
+						+ EntityUtils.toString(httpResponse.getEntity()) + "]");
 			}
 		} catch (Exception e) {
+			logger.trace(e.getMessage(), e);
 			throw new ComputerVisionException(e.getMessage());
 		}
 	}
 
-	private String put(String url, Map<String, Object> data) throws ComputerVisionException {
+	private <T extends OxfordResponse> T put(String url, Map<String, Object> data, T response)
+			throws ComputerVisionException {
 		HttpPut request = new HttpPut(url);
 		request.setHeader(headerKey, this.subscriptionKey);
 
@@ -191,33 +179,32 @@ public abstract class OxfordRestClient implements OxfordClient {
 			StringEntity entity = new StringEntity(json);
 			request.setEntity(entity);
 			request.setHeader("Content-Type", "application/json");
-			HttpResponse response = client.execute(request);
+			HttpResponse httpResponse = client.execute(request);
 
-			int statusCode = response.getStatusLine().getStatusCode();
+			int statusCode = httpResponse.getStatusLine().getStatusCode();
 			if (statusCode == 200 || statusCode == 201) {
-				return readInput(response.getEntity().getContent());
+				return response.build(httpResponse);
 			} else {
 				throw new Exception("Error executing PUT request! Received error code: "
-						+ response.getStatusLine().getStatusCode());
+						+ httpResponse.getStatusLine().getStatusCode());
 			}
 		} catch (Exception e) {
 			throw new ComputerVisionException(e.getMessage());
 		}
 	}
 
-	private OxfordResponse delete(String url) throws ComputerVisionException {
+	private <T extends OxfordResponse> T delete(String url, T response) throws ComputerVisionException {
 		HttpDelete request = new HttpDelete(url);
 		request.setHeader(headerKey, this.subscriptionKey);
 
 		try (CloseableHttpClient client = getHttpClient()) {
-			HttpResponse response = client.execute(request);
-
-			int statusCode = response.getStatusLine().getStatusCode();
+			HttpResponse httpResponse = client.execute(request);
+			int statusCode = httpResponse.getStatusLine().getStatusCode();
 			if (statusCode != 200) {
 				throw new Exception("Error executing DELETE request! Received error code: "
-						+ response.getStatusLine().getStatusCode());
+						+ httpResponse.getStatusLine().getStatusCode());
 			}
-			return readInput(response.getEntity().getContent());
+			return response.build(httpResponse);
 		} catch (Exception e) {
 			throw new ComputerVisionException(e.getMessage());
 		}

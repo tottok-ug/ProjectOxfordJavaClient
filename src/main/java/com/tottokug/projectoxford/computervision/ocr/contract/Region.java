@@ -8,6 +8,17 @@ public class Region {
 
 	private List<Line> lines;
 	private BoundingBox bb;
+	private String boundingBox;
+
+	public void setBoundingBox(BoundingBox boundingBox) {
+		this.bb = boundingBox;
+	}
+
+	public void setBoundingBox(String boundingBox) {
+		String[] b = boundingBox.split(",");
+		this.setBoundingBox(new BoundingBox(Integer.parseInt(b[0]), Integer.parseInt(b[1]), Integer.parseInt(b[2]),
+				Integer.parseInt(b[3])));
+	}
 
 	public Region(List<Line> lines, BoundingBox bb) {
 		this.lines = lines;
