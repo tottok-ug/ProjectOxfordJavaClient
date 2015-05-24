@@ -80,17 +80,19 @@ public abstract class OxfordRestClient implements OxfordClient {
 		OxfordResponse response = new DefaultOxfordResponse();
 		switch (request.getMethod()) {
 			case DELETE:
+				return delete(url);
 				break;
 			case GET:
-				get(url);
+				return get(url);
 				break;
 			case POST:
-				post(url, request.getPostParamters(), request.getContentType(), response.inputStream());
+				return post(url, request.getPostParamters(), request.getContentType(), response.inputStream());
 				break;
 			case PUT:
+				return put(url, request.getPostParamters());
 				break;
 			case PATCH:
-				patch(url, request.getPostParamters(), request.getContentType(), response.inputStream());
+				return patch(url, request.getPostParamters(), request.getContentType(), response.inputStream());
 				break;
 			default:
 				throw new ComputerVisionException("Error! Incorrect method provided: " + request.getMethod().toString());
@@ -203,7 +205,7 @@ public abstract class OxfordRestClient implements OxfordClient {
 		}
 	}
 
-	private Object delete(String url) throws ComputerVisionException {
+	private OxfordResponse delete(String url) throws ComputerVisionException {
 		HttpDelete request = new HttpDelete(url);
 		request.setHeader(headerKey, this.subscriptionKey);
 
@@ -215,7 +217,6 @@ public abstract class OxfordRestClient implements OxfordClient {
 				throw new Exception("Error executing DELETE request! Received error code: "
 						+ response.getStatusLine().getStatusCode());
 			}
-
 			return readInput(response.getEntity().getContent());
 		} catch (Exception e) {
 			throw new ComputerVisionException(e.getMessage());
@@ -242,17 +243,6 @@ public abstract class OxfordRestClient implements OxfordClient {
 		}
 
 		return url.toString();
-	}
-
-	private String readInput(InputStream is) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(is));
-		StringBuffer json = new StringBuffer();
-		String line;
-		while ((line = br.readLine()) != null) {
-			json.append(line);
-		}
-		logger.debug(json.toString());
-		return json.toString();
 	}
 
 }
