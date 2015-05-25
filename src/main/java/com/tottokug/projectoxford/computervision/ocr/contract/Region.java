@@ -16,6 +16,15 @@ public class Region {
 		this.boundingBox = boundingBox;
 	}
 
+	public String getRegionText() {
+		StringBuffer sb = new StringBuffer();
+		for (Line line : getLines()) {
+			sb.append(line.getWordInLine());
+		}
+		return sb.toString();
+
+	}
+
 	public List<Line> getLines() {
 		return lines;
 	}

@@ -24,6 +24,14 @@ public class Line {
 		this.boundingBox = boundingBox;
 	}
 
+	public String getWordInLine() {
+		StringBuffer sb = new StringBuffer();
+		for (Word word : getWords()) {
+			sb.append(word.getText());
+		}
+		return sb.toString();
+	}
+
 	public List<Word> getWords() {
 		return words;
 	}

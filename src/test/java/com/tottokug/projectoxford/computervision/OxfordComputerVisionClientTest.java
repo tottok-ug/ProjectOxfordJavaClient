@@ -26,37 +26,36 @@ public class OxfordComputerVisionClientTest {
 
 		OxfordComputerVisionClient visionClient = new OxfordComputerVisionClient(new BasicOxfordCredentilas(
 				Messages.getString("OxfordComputerVisionClientTest.subscriptKey"))); //$NON-NLS-1$
-		InputStream stream = getClass().getResourceAsStream("/test.png"); //$NON-NLS-1$
+		for (int i = 1; i < 7; i++) {
+			logger.debug(String.format("/nc%05d.jpg", i));
+			InputStream stream = getClass().getResourceAsStream(String.format("/nc%05d.jpg", i)); //$NON-NLS-1$
 
-		OCRRequest request = new OCRRequest();
-		request.withDetectOrientation(true).withLanguage(Language.JAPANESE).withInputStream(stream);
-		OCRResponse response;
-		try {
-			response = visionClient.recognizeText(request);
-			logger.debug("RESPONSED -===================================================");
-			logger.debug("RESPONSE CODE = " + response.getStatus());
-			if (response.getStatus() == 200) {
-				Language language = response.getLanguage();
-				logger.debug("LANGUAGE = " + language.toString());
-				double textAngle = response.getTextAngle();
-				logger.debug("textAngle = " + textAngle);
-				String orientation = response.getOrientation();
-				logger.debug("orientation = " + orientation);
-				List<Region> regions = response.getRegions();
-				for (Region region : regions) {
-					List<Line> lines = region.getLines();
-					for (Line line : lines) {
-						List<Word> words = line.getWords();
-						for (Word word : words) {
-							String text = word.getText();
-							logger.debug("text => " + text);
+			OCRRequest request = new OCRRequest();
+			request.withDetectOrientation(true).withLanguage(Language.JAPANESE).withInputStream(stream);
+			OCRResponse response;
+			try {
+				response = visionClient.recognizeText(request);
+				logger.debug("RESPONSED -===================================================");
+				logger.debug("RESPONSE CODE = " + response.getStatus());
+				if (response.getStatus() == 200) {
+					Language language = response.getLanguage();
+					logger.debug("LANGUAGE = " + language.toString());
+					double textAngle = response.getTextAngle();
+					logger.debug("textAngle = " + textAngle);
+					String orientation = response.getOrientation();
+					logger.debug("orientation = " + orientation);
+					List<Region> regions = response.getRegions();
+					for (Region region : regions) {
+						List<Line> lines = region.getLines();
+						for (Line line : lines) {
+							logger.debug(line.getWordInLine());
 						}
 					}
 				}
+			} catch (ComputerVisionException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-		} catch (ComputerVisionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
 }

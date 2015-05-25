@@ -3,7 +3,6 @@ package com.tottokug.projectoxford.computervision.ocr;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map.Entry;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpResponse;
@@ -14,7 +13,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.stream.JsonToken;
 import com.tottokug.projectoxford.OxfordResponseAbstract;
 import com.tottokug.projectoxford.computervision.ocr.contract.Language;
 import com.tottokug.projectoxford.computervision.ocr.contract.Region;
@@ -105,17 +103,19 @@ public class OCRResponse extends OxfordResponseAbstract {
 			JsonObject jsonObject = gson.fromJson(json, JsonObject.class);
 			logger.debug("JSONObject" + jsonObject.toString());
 			logger.debug("language is setted => " + jsonObject.get("language"));
-			this.setLanguage(jsonObject.get("language").getAsString());
-			this.setTextAngle(jsonObject.get("textAngle").getAsDouble());
 			this.setOrientation(jsonObject.get("orientation").getAsString());
-			if (jsonObject.get("regions").isJsonArray()) {
-				if (this.regions == null) {
-					this.regions = new ArrayList<Region>();
-				}
-				for (JsonElement js : jsonObject.get("regions").getAsJsonArray()) {
-					logger.debug(" REGIONS => " + js.toString());
-					Region region = new GsonBuilder().create().fromJson(js, Region.class);
-					this.regions.add(region);
+			if (!this.getOrientation().matches("NotDetected")) {
+				this.setLanguage(jsonObject.get("language").getAsString());
+				this.setTextAngle(jsonObject.get("textAngle").getAsDouble());
+				if (jsonObject.get("regions").isJsonArray()) {
+					if (this.regions == null) {
+						this.regions = new ArrayList<Region>();
+					}
+					for (JsonElement js : jsonObject.get("regions").getAsJsonArray()) {
+						logger.debug(" REGIONS => " + js.toString());
+						Region region = new GsonBuilder().create().fromJson(js, Region.class);
+						this.regions.add(region);
+					}
 				}
 			}
 		} catch (IOException e) {
