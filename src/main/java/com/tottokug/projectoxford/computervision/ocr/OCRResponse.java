@@ -106,7 +106,9 @@ public class OCRResponse extends OxfordResponseAbstract {
 			this.setOrientation(jsonObject.get("orientation").getAsString());
 			if (!this.getOrientation().matches("NotDetected")) {
 				this.setLanguage(jsonObject.get("language").getAsString());
-				this.setTextAngle(jsonObject.get("textAngle").getAsDouble());
+				if (jsonObject.get("textAngle") != null) {
+					this.setTextAngle(jsonObject.get("textAngle").getAsDouble());
+				}
 				if (jsonObject.get("regions").isJsonArray()) {
 					if (this.regions == null) {
 						this.regions = new ArrayList<Region>();
