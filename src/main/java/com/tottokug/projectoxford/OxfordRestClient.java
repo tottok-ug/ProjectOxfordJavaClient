@@ -68,7 +68,7 @@ public abstract class OxfordRestClient implements OxfordClient {
 	private Gson gson = new Gson();
 
 	@Override
-	public <T extends OxfordResponse> T request(OxfordRequest request, T response) throws ComputerVisionException {
+	public <T extends OxfordResponse<?>> T request(OxfordRequest request, T response) throws ComputerVisionException {
 		logger.debug("Starting API request");
 		logger.debug("request.path = " + request.getpath());
 		logger.debug("request.method = " + request.getMethod().toString());
@@ -92,12 +92,12 @@ public abstract class OxfordRestClient implements OxfordClient {
 		}
 	}
 
-	private <T extends OxfordResponse> T post(String url, Map<String, Object> data, String contentType, T response)
+	private <T extends OxfordResponse<?>> T post(String url, Map<String, Object> data, String contentType, T response)
 			throws ComputerVisionException {
 		return webInvoke("POST", url, data, contentType, response);
 	}
 
-	private <T extends OxfordResponse> T get(String url, T response) throws ComputerVisionException {
+	private <T extends OxfordResponse<?>> T get(String url, T response) throws ComputerVisionException {
 		HttpGet request = new HttpGet(url);
 		request.setHeader(headerKey, this.subscriptionKey);
 		try (CloseableHttpClient client = getHttpClient()) {
@@ -114,12 +114,12 @@ public abstract class OxfordRestClient implements OxfordClient {
 		}
 	}
 
-	private <T extends OxfordResponse> T patch(String url, Map<String, Object> data, String contentType, T response)
+	private <T extends OxfordResponse<?>> T patch(String url, Map<String, Object> data, String contentType, T response)
 			throws ComputerVisionException {
 		return webInvoke("PATCH", url, data, contentType, response);
 	}
 
-	private <T extends OxfordResponse> T webInvoke(String method, String url, Map<String, Object> data,
+	private <T extends OxfordResponse<?>> T webInvoke(String method, String url, Map<String, Object> data,
 			String contentType, T response) throws ComputerVisionException {
 		HttpEntityEnclosingRequestBase request = null;
 
@@ -170,7 +170,7 @@ public abstract class OxfordRestClient implements OxfordClient {
 		}
 	}
 
-	private <T extends OxfordResponse> T put(String url, Map<String, Object> data, T response)
+	private <T extends OxfordResponse<?>> T put(String url, Map<String, Object> data, T response)
 			throws ComputerVisionException {
 		HttpPut request = new HttpPut(url);
 		request.setHeader(headerKey, this.subscriptionKey);
@@ -194,7 +194,7 @@ public abstract class OxfordRestClient implements OxfordClient {
 		}
 	}
 
-	private <T extends OxfordResponse> T delete(String url, T response) throws ComputerVisionException {
+	private <T extends OxfordResponse<?>> T delete(String url, T response) throws ComputerVisionException {
 		HttpDelete request = new HttpDelete(url);
 		request.setHeader(headerKey, this.subscriptionKey);
 

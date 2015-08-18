@@ -4,6 +4,6 @@ import com.tottokug.projectoxford.computervision.exception.ComputerVisionExcepti
 
 public interface OxfordClient {
 
-	<T extends OxfordResponse> T request(OxfordRequest request, T response) throws ComputerVisionException;
+	<T extends OxfordResponse<?>> T request(OxfordRequest request, T response) throws ComputerVisionException;
 
 }

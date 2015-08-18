@@ -4,7 +4,7 @@ import org.apache.http.HttpResponse;
 
 import com.tottokug.projectoxford.OxfordResponse;
 
-public class AnalyzeResponse implements OxfordResponse {
+public class AnalyzeResponse implements OxfordResponse<AnalyzeResponse> {
 
 	@Override
 	public int getResponseStatus() {

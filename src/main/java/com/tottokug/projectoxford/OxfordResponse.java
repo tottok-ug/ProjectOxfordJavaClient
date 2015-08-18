@@ -2,7 +2,7 @@ package com.tottokug.projectoxford;
 
 import org.apache.http.HttpResponse;
 
-public interface OxfordResponse {
+public interface OxfordResponse<T extends OxfordResponse<?>> {
 
 	int getResponseStatus();
 
@@ -14,6 +14,6 @@ public interface OxfordResponse {
 
 	boolean inputStream();
 
-	<T extends OxfordResponse> T build(HttpResponse response);
+	<T extends OxfordResponse<?>> T build(HttpResponse response);
 
 }

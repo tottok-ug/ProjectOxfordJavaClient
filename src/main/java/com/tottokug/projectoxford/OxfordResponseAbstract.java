@@ -21,8 +21,7 @@ public abstract class OxfordResponseAbstract implements OxfordResponse {
 
 	@Override
 	public int getResponseStatus() {
-		// TODO Auto-generated method stub
-		return 0;
+		return statusCode;
 	}
 
 	@Override
