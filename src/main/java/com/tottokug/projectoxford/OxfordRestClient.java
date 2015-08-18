@@ -86,7 +86,8 @@ public abstract class OxfordRestClient implements OxfordClient {
 			case PATCH:
 				return patch(url, request.getPostParamters(), request.getContentType(), response);
 			default:
-				throw new ComputerVisionException("Error! Incorrect method provided: " + request.getMethod().toString());
+				throw new ComputerVisionException(
+						"Error! Incorrect method provided: " + request.getMethod().toString());
 
 		}
 	}

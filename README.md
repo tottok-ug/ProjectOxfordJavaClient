@@ -7,6 +7,9 @@ Project Oxford Java Client
 
 
 ## How To Use
+
+Vision API - OCR
+
 ```Java
 
 OxfordComputerVisionClient visionClient = new OxfordComputerVisionClient(new BasicOxfordCredentilas(

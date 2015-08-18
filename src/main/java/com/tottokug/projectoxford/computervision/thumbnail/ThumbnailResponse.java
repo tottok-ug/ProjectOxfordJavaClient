@@ -33,7 +33,7 @@ public class ThumbnailResponse implements OxfordResponse {
 	}
 
 	@Override
-	public <T extends OxfordResponse> T build(HttpResponse response) {
+	public ThumbnailResponse build(HttpResponse response) {
 		// TODO Auto-generated method stub
 		return null;
 	}

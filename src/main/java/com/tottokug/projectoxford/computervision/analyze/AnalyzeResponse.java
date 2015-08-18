@@ -37,7 +37,7 @@ public class AnalyzeResponse implements OxfordResponse {
 	}
 
 	@Override
-	public <T extends OxfordResponse> T build(HttpResponse response) {
+	public AnalyzeResponse build(HttpResponse response) {
 		// TODO Auto-generated method stub
 		return null;
 	}

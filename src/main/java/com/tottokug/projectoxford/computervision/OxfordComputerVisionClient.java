@@ -6,7 +6,6 @@ import java.io.InputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.tottokug.projectoxford.OxfordResponse;
 import com.tottokug.projectoxford.OxfordRestClient;
 import com.tottokug.projectoxford.auth.OxfordCredentials;
 import com.tottokug.projectoxford.computervision.analyze.AnalyzeResponse;
@@ -23,7 +22,8 @@ public class OxfordComputerVisionClient extends OxfordRestClient implements Oxfo
 
 	public OxfordComputerVisionClient(OxfordCredentials oxfordCredentials) {
 		super(oxfordCredentials);
-		logger.debug("construct " + getClass().getName() + " : credentials = " + oxfordCredentials.getSubscriptionKey());
+		logger.debug(
+				"construct " + getClass().getName() + " : credentials = " + oxfordCredentials.getSubscriptionKey());
 		this.endpoint = "https://api.projectoxford.ai/vision/v1";
 
 	}
@@ -68,8 +68,8 @@ public class OxfordComputerVisionClient extends OxfordRestClient implements Oxfo
 	}
 
 	@Override
-	public AnalyzeResponse analyzeImage(InputStream stream, String[] visualFeatures) throws ComputerVisionException,
-			IOException {
+	public AnalyzeResponse analyzeImage(InputStream stream, String[] visualFeatures)
+			throws ComputerVisionException, IOException {
 		// TODO Auto-generated method stub
 		return null;
 	}

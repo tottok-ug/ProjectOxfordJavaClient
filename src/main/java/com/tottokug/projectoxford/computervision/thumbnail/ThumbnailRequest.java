@@ -3,7 +3,6 @@ package com.tottokug.projectoxford.computervision.thumbnail;
 import java.util.Map;
 
 import com.tottokug.projectoxford.HttpRequestMethod;
-import com.tottokug.projectoxford.OxfordRequest;
 import com.tottokug.projectoxford.OxfordRequestAbstract;
 
 public class ThumbnailRequest extends OxfordRequestAbstract {

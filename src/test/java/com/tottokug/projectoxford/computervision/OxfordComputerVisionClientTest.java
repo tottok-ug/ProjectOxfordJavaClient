@@ -11,11 +11,9 @@ import com.tottokug.projectoxford.auth.BasicOxfordCredentilas;
 import com.tottokug.projectoxford.computervision.exception.ComputerVisionException;
 import com.tottokug.projectoxford.computervision.ocr.OCRRequest;
 import com.tottokug.projectoxford.computervision.ocr.OCRResponse;
-import com.tottokug.projectoxford.computervision.ocr.contract.BoundingBox;
 import com.tottokug.projectoxford.computervision.ocr.contract.Language;
 import com.tottokug.projectoxford.computervision.ocr.contract.Line;
 import com.tottokug.projectoxford.computervision.ocr.contract.Region;
-import com.tottokug.projectoxford.computervision.ocr.contract.Word;
 
 public class OxfordComputerVisionClientTest {
 
@@ -53,7 +51,6 @@ public class OxfordComputerVisionClientTest {
 					}
 				}
 			} catch (ComputerVisionException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
