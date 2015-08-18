@@ -46,8 +46,15 @@ public class OCRResponse extends OxfordResponseAbstract {
 		return orientation;
 	}
 
+	public List<String> getRegionTextAsList() {
+		List<String> texts = new ArrayList<String>();
+		for (Region region : getRegions()) {
+			texts.add(region.getRegionText());
+		}
+		return texts;
+	}
+
 	public List<Region> getRegions() {
-		// TODO Auto-generated method stub
 		return regions;
 	}
 
